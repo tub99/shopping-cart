@@ -1,0 +1,15 @@
+{
+  "name": "shopping-cart-assignment",
+  "version": "1.0.0",
+  "description": "shopping cart ",
+  "main": "src/main.js",
+  "scripts": {
+    "test": "mocha _tests_"
+  },
+  "author": "soumya ghosh",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.2.2"
+  }
+}
