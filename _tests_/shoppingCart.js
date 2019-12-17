@@ -20,8 +20,9 @@ describe('Shopping Cart', () => {
             cart.addItem(soap, 5);
         });
 
-        it('should have 5 Dove saops in cart', () => {
-            expect(cart.getItems().length).to.equal(5)
+        it('should have 5 Dove saops in cart with unit price 39.99', () => {
+            expect(cart.getItems().length).to.equal(5);
+            expect(soap.getPrice()).to.equal(39.99);
         })
 
         it('should check carts total price', () => {
@@ -37,8 +38,9 @@ describe('Shopping Cart', () => {
             cart.addItem(soap, 3);
         });
 
-        it('should add contain 8 Dove soaps', () => {
+        it('should add contain 8 Dove soaps with unit price 39.99', () => {
             expect(cart.getItems().length).to.equal(8);
+            expect(soap.getPrice()).to.equal(39.99);
         });
 
         it('should check carts total price', () => {
