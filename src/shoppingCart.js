@@ -3,7 +3,6 @@ const utils = require('./utils');
 class ShoppingCart {
 
     constructor() {
-        this.productList = [];
         this.priceQuantityMap = {};
         this.tax = new Tax();
     }
@@ -32,20 +31,20 @@ class ShoppingCart {
     }
     getTotalPrice() {
         let cartPrice = 0;
-        for (let i = 0; i < this.productList.length; i++) {
-            const productPrice = this.productList[i].getPrice();
-            cartPrice += productPrice;
+        for (let prop of Object.keys(this.priceQuantityMap)) {
+            const product = this.priceQuantityMap[prop];
+            cartPrice += product.unitPrice * product.quantity;
         }
-        return utils.roundToTwoDecimalPlaces(cartPrice+this.getTotalTaxAmount());
+        return utils.roundToTwoDecimalPlaces(cartPrice + this.getTotalTaxAmount());
     }
 
-    getTotalTaxAmount(){
+    getTotalTaxAmount() {
         let totSalesTax = 0;
-        for (let i = 0; i < this.productList.length; i++) {
-            const productPrice = this.productList[i].getPrice();
-            totSalesTax += this.tax.getTaxForAProduct(productPrice);
+
+        for (let prop of Object.keys(this.priceQuantityMap)) {
+            const product = this.priceQuantityMap[prop];
+            totSalesTax += this.tax.getTaxForAProduct(product.unitPrice) * product.quantity;
         }
-        console.log('Total sales tax', totSalesTax);
         return totSalesTax;
     }
 }
