@@ -24,10 +24,7 @@ class ShoppingCart {
     }
 
     addItem(product, quantity) {
-        this.mapPriceQuantity(product, quantity)
-        for (let i = 0; i < quantity; i++) {
-            this.productList.push(product);
-        }
+        this.mapPriceQuantity(product, quantity);
     }
     getTotalPrice() {
         let cartPrice = 0;
