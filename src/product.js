@@ -1,11 +1,11 @@
 class Product{
-    constructor(type, price){
-        this.type = type;
+    constructor(name, price){
+        this.name = name;
         this.price = price;
     }
 
-    getType(){
-        return this.type;
+    getName(){
+        return this.name;
     }
 
     getPrice(){

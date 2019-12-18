@@ -13,40 +13,35 @@ describe('Shopping Cart', () => {
         expect(cart).not.to.be.undefined;
     });
 
-    describe('Step 1 :Adding 5 Dove soaps', () => {
-        let soap;
+    describe('Step 3 :Adding 2 Dove soaps and then 2 Axe Deo soaps to cart', () => {
+        let soap, deo;
         beforeEach(() => {
             soap = new Product('Dove', 39.99);
-            cart.addItem(soap, 5);
+            deo = new Product('Axe Deo',99.99);
+            cart.addItem(soap, 2);
+            cart.addItem(deo, 2);
         });
 
-        it('should have 5 Dove saops in cart with unit price 39.99', () => {
-            expect(cart.getItems().length).to.equal(5);
-            expect(soap.getPrice()).to.equal(39.99);
-        })
+        it('should contain 2 Dove soaps  each with a unit price of 39.99', () => {
+            const soapName = soap.getName();
+            expect(cart.getItemQuantity(soapName)).to.equal(2);
+            expect(cart.getItemUnitPrice(soapName)).to.equal(39.99);
+           
 
-        it('should check carts total price', () => {
-            expect(cart.getTotalPrice()).to.equal(199.95)
+        });
+
+        it('should contain 2 Axe Deoa  each with a unit price of 99.99', () => {
+            const deoName = deo.getName();
+            expect(cart.getItemQuantity(deoName)).to.equal(2);
+            expect(cart.getItemUnitPrice(deoName)).to.equal(99.99);
+        });
+
+        it('should check carts total tax', () => {
+            expect(cart.getTotalTaxAmount()).to.equal(35.00);
+        });
+        it(' shopping cart’s total price should equal 314.96', ()=>{
+            expect(cart.getTotalPrice()).to.equal(314.96);
         })
     });
-
-    describe('Step 2 :Adding 5 Dove soaps and then 3 Dove soaps', () => {
-        let soap;
-        beforeEach(() => {
-            soap = new Product('Dove', 39.99);
-            cart.addItem(soap, 5);
-            cart.addItem(soap, 3);
-        });
-
-        it('should add contain 8 Dove soaps with unit price 39.99', () => {
-            expect(cart.getItems().length).to.equal(8);
-            expect(soap.getPrice()).to.equal(39.99);
-        });
-
-        it('should check carts total price', () => {
-            expect(cart.getTotalPrice()).to.equal(319.92)
-        });
-    });
-
 
 });
