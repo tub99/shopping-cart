@@ -1,12 +1,11 @@
-const assert = require('assert');
-var expect = require('chai').expect;
+const expect = require('chai').expect;
 const Product = require('./../src/product');
 
 describe('Product', function() {
-    it('should create a Product with type and price', function() {
-        const product = new Product('Dove', 35);
+    it('should create a Product Dove Soap with price 39.99', function() {
+        const product = new Product('Dove Soap', 39.99);
         expect(product).not.to.be.undefined;
-        assert.equal(product.getName(), 'Dove');
-        assert.equal(product.getPrice(), 35);
+        expect(product.getName()).to.equal('Dove Soap');
+        expect(product.getPrice()).to.equal(39.99);
       });
   });

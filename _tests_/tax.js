@@ -17,10 +17,5 @@ describe('Tax', function () {
     it('should get tax percentage', () => {
         expect(tax.getTaxPerecntage()).to.equal(12.5);
     });
-
     
-    it('should get tax for a particular product', () => {
-        const soap = new Product('Dove', 39.99);
-        expect(tax.getTaxForAProduct(soap.getPrice())).to.equal(5);
-    });
 });
