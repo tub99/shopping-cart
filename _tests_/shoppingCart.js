@@ -1,7 +1,9 @@
 const expect = require('chai').expect;
+const sinon = require('sinon');
 const ShoppingCart = require('./../src/shoppingCart');
 const Product = require('./../src/product');
 const Tax = require('./../src/tax');
+const utils = require('./../src/utils');
 
 describe('Shopping Cart', () => {
     let cart, tax;
@@ -39,7 +41,15 @@ describe('Shopping Cart', () => {
             expect(cart.getTotalTaxAmount(taxPcnt)).to.equal(35.00);
         });
         it('should check carts total price should equal 314.96', () => {
+            const utilSpy = sinon.spy(cart,'getTotalPrice');
+            const utilMock = sinon.mock(utils);
+            utilMock.expects('roundToTwoDecimalPlaces').once().returns(0);
             expect(cart.getTotalPrice(taxPcnt)).to.equal(314.96);
+            console.log('SPY CALL COUNT',utilSpy.callCount);
+            sinon.assert.calledOnce(utilSpy);
+            utilSpy.restore();
+            utilMock.restore();
+            utilMock.verify();
         })
     });
 
